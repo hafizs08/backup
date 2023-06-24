@@ -53,28 +53,30 @@ public class Usulan {
     @Column(name = "deskripsi_kegiatan")
     private String deskripsiKegiatan;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tanggal_mulai_kegiatan")
     private Date tanggalMulaiKegiatan;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tanggal_selesai_kegiatan")
     private Date tanggalSelesaiKegiatan;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "waktu_mulai_kegiatan")
-    private Time waktuMulaiKegiatan;
+    private Date waktuMulaiKegiatan;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "waktu_selesai_kegiatan")
-    private Time waktuSelesaiKegiatan;
+    private Date waktuSelesaiKegiatan;
 
     @Column(name = "tempat_kegiatan")
     private String tempatKegiatan;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tanggal_keberangkatan")
     private Date tanggalKeberangkatan;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tanggal_kepulangan")
     private Date tanggalKepulangan;
 
@@ -87,12 +89,11 @@ public class Usulan {
     @Column(name = "total_pendana")
     private int totalPendana;
 
-    @Lob
     @Column(name = "tanda_tangan_ormawa")
-    private byte[] tandaTanganOrmawa;
+    private String tandaTanganOrmawa;
 
-    @Column(name = "id_partisipan")
-    private int idPartisipan;
+    @Column(name = "id_pratisipan")
+    private int idPratisipan;
 
     @Column(name = "id_rincian_biaya_kegiatan")
     private int idRincianBiayaKegiatan;
@@ -124,9 +125,6 @@ public class Usulan {
     @Column(name = "rencana_anggaran_kegiatan")
     private String rencanaAnggaranKegiatan;
 
-    @Column(name = "id_panitia_peserta")
-    private int idPanitiaPeserta;
-
     @Column(name = "id_tertib_acara")
     private int idTertibAcara;
 
@@ -136,21 +134,17 @@ public class Usulan {
     @Column(name = "penutup")
     private String penutup;
 
-    @Lob
     @Column(name = "postingan_kegiatan")
-    private byte[] postinganKegiatan;
+    private String postinganKegiatan;
 
-    @Lob
     @Column(name = "dokumentasi_kegiatan")
-    private byte[] dokumentasiKegiatan;
+    private String dokumentasiKegiatan;
 
-    @Lob
     @Column(name = "tabulasi_hasil")
-    private byte[] tabulasiHasil;
+    private String tabulasiHasil;
 
-    @Lob
     @Column(name = "faktur_pembayaran")
-    private byte[] fakturPembayaran;
+    private String fakturPembayaran;
 
     @Column(name = "status")
     private String status;
@@ -161,9 +155,8 @@ public class Usulan {
     @Column(name = "roles")
     private String roles;
 
-    @Lob
     @Column(name = "file")
-    private byte[] file;
+    private String file;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
@@ -173,20 +166,17 @@ public class Usulan {
     @Column(name = "created_at")
     private Date createdAt;
 
-    // Constructors, getters, and setters
-
     public Usulan(int idUser, int idOrmawa, String pembiayaan, String namaKegiatan, String bentukKegiatan,
                   String deskripsiKegiatan, Date tanggalMulaiKegiatan, Date tanggalSelesaiKegiatan,
-                  Time waktuMulaiKegiatan, Time waktuSelesaiKegiatan, String tempatKegiatan,
-                  Date tanggalKeberangkatan, Date tanggalKepulangan, int jumlahPartisipan,
-                  String targetKegiatan, int totalPendana, byte[] tandaTanganOrmawa, int idPartisipan,
-                  int idRincianBiayaKegiatan, String ketuaOrmawa, String pembina, String latarBelakang,
-                  String tujuanKegiatan, String manfaatKegiatan, String bentukPelaksanaanKegiatan,
-                  String targetPencapaianKegiatan, String waktuDanTempatPelaksanaan,
-                  String rencanaAnggaranKegiatan, int idPanitiaPeserta, int idTertibAcara,
-                  String perlengkapan, String penutup, byte[] postinganKegiatan, byte[] dokumentasiKegiatan,
-                  byte[] tabulasiHasil, byte[] fakturPembayaran, String status, String validasiPembina,
-                  String roles, byte[] file, Date updatedAt, Date createdAt) {
+                  Date waktuMulaiKegiatan, Date waktuSelesaiKegiatan, String tempatKegiatan,
+                  Date tanggalKeberangkatan, Date tanggalKepulangan, int jumlahPartisipan, String targetKegiatan,
+                  int totalPendana, String tandaTanganOrmawa, int idPratisipan, int idRincianBiayaKegiatan,
+                  String ketuaOrmawa, String pembina, String latarBelakang, String tujuanKegiatan,
+                  String manfaatKegiatan, String bentukPelaksanaanKegiatan, String targetPencapaianKegiatan,
+                  String waktuDanTempatPelaksanaan, String rencanaAnggaranKegiatan, int idTertibAcara,
+                  String perlengkapan, String penutup, String postinganKegiatan, String dokumentasiKegiatan,
+                  String tabulasiHasil, String fakturPembayaran, String status, String validasiPembina,
+                  String roles, String file, Date updatedAt, Date createdAt) {
         this.idUser = idUser;
         this.idOrmawa = idOrmawa;
         this.pembiayaan = pembiayaan;
@@ -204,7 +194,7 @@ public class Usulan {
         this.targetKegiatan = targetKegiatan;
         this.totalPendana = totalPendana;
         this.tandaTanganOrmawa = tandaTanganOrmawa;
-        this.idPartisipan = idPartisipan;
+        this.idPratisipan = idPratisipan;
         this.idRincianBiayaKegiatan = idRincianBiayaKegiatan;
         this.ketuaOrmawa = ketuaOrmawa;
         this.pembina = pembina;
@@ -215,7 +205,6 @@ public class Usulan {
         this.targetPencapaianKegiatan = targetPencapaianKegiatan;
         this.waktuDanTempatPelaksanaan = waktuDanTempatPelaksanaan;
         this.rencanaAnggaranKegiatan = rencanaAnggaranKegiatan;
-        this.idPanitiaPeserta = idPanitiaPeserta;
         this.idTertibAcara = idTertibAcara;
         this.perlengkapan = perlengkapan;
         this.penutup = penutup;
@@ -230,6 +219,4 @@ public class Usulan {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
-
-
 }

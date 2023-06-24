@@ -48,6 +48,7 @@ public class BeritaController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
+        
 //         @PostMapping
 //         public ResponseEntity<Berita> createBerita(@RequestParam("jenisKegiatan") String jenisKegiatan,
 //                                            @RequestParam("penulis") String penulis,

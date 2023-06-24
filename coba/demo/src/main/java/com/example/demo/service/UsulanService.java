@@ -56,7 +56,7 @@ public class UsulanService {
         usulan.setTargetKegiatan(updatedUsulan.getTargetKegiatan());
         usulan.setTotalPendana(updatedUsulan.getTotalPendana());
         usulan.setTandaTanganOrmawa(updatedUsulan.getTandaTanganOrmawa());
-        usulan.setIdPartisipan(updatedUsulan.getIdPartisipan());
+        //usulan.setIdPartisipan(updatedUsulan.getIdPartisipan());
         usulan.setIdRincianBiayaKegiatan(updatedUsulan.getIdRincianBiayaKegiatan());
         usulan.setKetuaOrmawa(updatedUsulan.getKetuaOrmawa());
         usulan.setPembina(updatedUsulan.getPembina());
@@ -67,7 +67,7 @@ public class UsulanService {
         usulan.setTargetPencapaianKegiatan(updatedUsulan.getTargetPencapaianKegiatan());
         usulan.setWaktuDanTempatPelaksanaan(updatedUsulan.getWaktuDanTempatPelaksanaan());
         usulan.setRencanaAnggaranKegiatan(updatedUsulan.getRencanaAnggaranKegiatan());
-        usulan.setIdPanitiaPeserta(updatedUsulan.getIdPanitiaPeserta());
+        //usulan.setIdPanitiaPeserta(updatedUsulan.getIdPanitiaPeserta());
         usulan.setIdTertibAcara(updatedUsulan.getIdTertibAcara());
         usulan.setPerlengkapan(updatedUsulan.getPerlengkapan());
         usulan.setPenutup(updatedUsulan.getPenutup());
