@@ -33,21 +33,21 @@ public class BeritaController {
         public BeritaController(BeritaService beritaService) {
             this.beritaService = beritaService;
         }
-        @PostMapping
-        public ResponseEntity <Berita> createBerita(@RequestParam("jenisKegiatan") String jenisKegiatan,
-                                            @RequestParam("penulis") String penulis,
-                                            @RequestParam("gambar") MultipartFile gambar,
-                                            @RequestParam("teks") String teks,
-                                            @RequestParam("detialBerita") String detialBerita) {
-            try {
-                byte[] gambarData = gambar.getBytes();
-                Berita berita = new Berita(jenisKegiatan, penulis, gambarData, teks, detialBerita);
-                Berita savedBerita = beritaService.saveBerita(berita);
-                return ResponseEntity.ok(savedBerita);
-            } catch (IOException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
+        // @PostMapping
+        // public ResponseEntity <Berita> createBerita(@RequestParam("jenisKegiatan") String jenisKegiatan,
+        //                                     @RequestParam("penulis") String penulis,
+        //                                     @RequestParam("gambar") MultipartFile gambar,
+        //                                     @RequestParam("teks") String teks,
+        //                                     @RequestParam("detialBerita") String detialBerita) {
+        //     try {
+        //         byte[] gambarData = gambar.getBytes();
+        //         Berita berita = new Berita(jenisKegiatan, penulis, gambarData, teks, detialBerita);
+        //         Berita savedBerita = beritaService.saveBerita(berita);
+        //         return ResponseEntity.ok(savedBerita);
+        //     } catch (IOException e) {
+        //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        //     }
+        // }
         
 //         @PostMapping
 //         public ResponseEntity<Berita> createBerita(@RequestParam("jenisKegiatan") String jenisKegiatan,
@@ -100,33 +100,33 @@ public class BeritaController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<Berita> updateBerita(@PathVariable("id") int id,
-                                               @RequestParam("jenis_kegiatan") String jenisKegiatan,
-                                               @RequestParam("penulis") String penulis,
-                                               @RequestParam(value = "gambar", required = false) MultipartFile gambar,
-                                               @RequestParam("teks") String teks,
-                                               @RequestParam("detialBerita") String detialBerita) {
-        Berita existingBerita = beritaService.getBeritaById((long) id);
-        if (existingBerita == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Berita> updateBerita(@PathVariable("id") int id,
+    //                                            @RequestParam("jenis_kegiatan") String jenisKegiatan,
+    //                                            @RequestParam("penulis") String penulis,
+    //                                            @RequestParam(value = "gambar", required = false) MultipartFile gambar,
+    //                                            @RequestParam("teks") String teks,
+    //                                            @RequestParam("detialBerita") String detialBerita) {
+    //     Berita existingBerita = beritaService.getBeritaById((long) id);
+    //     if (existingBerita == null) {
+    //         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    //     }
 
-        existingBerita.setJenisKegiatan(jenisKegiatan);
-        existingBerita.setPenulis(penulis);
+    //     existingBerita.setJenisKegiatan(jenisKegiatan);
+    //     existingBerita.setPenulis(penulis);
 
-        if (gambar != null && !gambar.isEmpty()) {
-            try {
-                byte[] gambarData = gambar.getBytes();
-                existingBerita.setGambar(gambarData);
-            } catch (IOException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
+    //     if (gambar != null && !gambar.isEmpty()) {
+    //         try {
+    //             byte[] gambarData = gambar.getBytes();
+    //             existingBerita.setGambar(gambarData);
+    //         } catch (IOException e) {
+    //             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    //         }
+    //     }
 
-        Berita updatedBerita = beritaService.saveBerita(existingBerita);
-        return ResponseEntity.ok(updatedBerita);
-    }
+    //     Berita updatedBerita = beritaService.saveBerita(existingBerita);
+    //     return ResponseEntity.ok(updatedBerita);
+    // }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBerita(@PathVariable("id") int id) {
         Berita existingBerita = beritaService.getBeritaById((long) id);

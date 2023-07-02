@@ -7,20 +7,38 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_user;
+    @Column(name = "id_user")
+    private String idUser;
 
-    @Column(name = "id_ormawa")
-    private int id_ormawa;
+    @ManyToOne
+    @JoinColumn(name = "id_ormawa")
+    private Ormawa ormawa;
 
     @Column(name = "id_ormawaB")
-    private int id_ormawaB;
+    private int idOrmawaB;
 
     @Column(name = "email")
     private String email;
@@ -29,20 +47,19 @@ public class User {
     private String password;
 
     @Column(name = "nama_lengkap")
-    private String nama_lengkap;
+    private String namaLengkap;
 
     @Column(name = "nim")
     private String nim;
 
     @Column(name = "no_hp")
-    private String no_hp;
+    private String noHp;
 
-    
     @Column(name = "image")
     private String image;
 
-    @Column(name = "mpt")
-    private int mpt;
+    @Column(name = "point_mpt")
+    private int pointMpt;
 
     @Column(name = "semester")
     private String semester;
@@ -51,19 +68,26 @@ public class User {
     private String kelas;
 
     @Column(name = "periode_mpt")
-    private String periode_mpt;
+    private String periodeMpt;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "status_mpt")
+    private String statusMpt;
 
     @Column(name = "prodi")
     private String prodi;
 
-    @Column(name = "created_at")
-    private LocalDateTime created_at;
-
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
 
-    // Getters and Setters, Constructors, and other methods
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime created_at;
+
+    @Column(name = "update_by")
+    private String update_by;
+
+    @Column(name = "create_by")
+    private String create_by;
+    // Constructors, getters, and setters
 }

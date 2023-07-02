@@ -32,18 +32,18 @@ public class BeritaService {
     public void deleteBerita(Berita existingBerita) {
         beritaRepository.delete(existingBerita);
     }
-    public Berita updateBerita(Long id, Berita updatedBerita) {
-        Optional<Berita> optionalBerita = beritaRepository.findById(id);
-        if (optionalBerita.isPresent()) {
-            Berita berita = optionalBerita.get();
-            berita.setJenisKegiatan(updatedBerita.getJenisKegiatan());
-            berita.setPenulis(updatedBerita.getPenulis());
-            berita.setGambar(updatedBerita.getGambar());
-            berita.setTeks(updatedBerita.getTeks());
-            berita.setDetialBerita(updatedBerita.getDetialBerita());
-            return beritaRepository.save(berita);
-        } else {
-            throw new NoSuchElementException("Berita not found with id: " + id);
-        }
-    }
+    // public Berita updateBerita(Long id, Berita updatedBerita) {
+    //     Optional<Berita> optionalBerita = beritaRepository.findById(id);
+    //     if (optionalBerita.isPresent()) {
+    //         Berita berita = optionalBerita.get();
+    //         berita.setJenisKegiatan(updatedBerita.getJenisKegiatan());
+    //         berita.setPenulis(updatedBerita.getPenulis());
+    //         berita.setGambar(updatedBerita.getGambar());
+    //         berita.setTeks(updatedBerita.getTeks());
+    //         berita.setDetialBerita(updatedBerita.getDetialBerita());
+    //         return beritaRepository.save(berita);
+    //     } else {
+    //         throw new NoSuchElementException("Berita not found with id: " + id);
+    //     }
+    // }
 }

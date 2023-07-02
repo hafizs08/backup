@@ -79,8 +79,8 @@ public class UsulanService {
         usulan.setValidasiPembina(updatedUsulan.getValidasiPembina());
         usulan.setRoles(updatedUsulan.getRoles());
         usulan.setFile(updatedUsulan.getFile());
-        usulan.setUpdatedAt(updatedUsulan.getUpdatedAt());
-        usulan.setCreatedAt(updatedUsulan.getCreatedAt());
+        // usulan.setUpdatedAt(updatedUsulan.getUpdatedAt());
+        // usulan.setCreatedAt(updatedUsulan.getCreatedAt());
         return usulanRepository.save(usulan);
     } else {
         throw new NoSuchElementException("Usulan not found with id: " + id);

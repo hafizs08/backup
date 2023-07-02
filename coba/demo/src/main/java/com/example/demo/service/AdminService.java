@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class AdminService {
     private final AdminRepository adminRepository;
@@ -16,19 +17,23 @@ public class AdminService {
         this.adminRepository = adminRepository;
     }
 
-    public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
-    }
-
-    public Admin getAdminById(int id) {
-        return adminRepository.findById(id).orElse(null);
-    }
-
+    // Method to save an admin
     public Admin saveAdmin(Admin admin) {
         return adminRepository.save(admin);
     }
 
-    public void deleteAdmin(int id) {
+    // Method to get an admin by ID
+    public Admin getAdminById(Long id) {
+        return adminRepository.findById(id).orElse(null);
+    }
+
+    // Method to get all admins
+    public List<Admin> getAllAdmins() {
+        return adminRepository.findAll();
+    }
+
+    // Method to delete an admin by ID
+    public void deleteAdmin(Long id) {
         adminRepository.deleteById(id);
     }
 }

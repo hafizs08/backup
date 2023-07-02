@@ -3,7 +3,12 @@ package com.example.demo.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "berita")
@@ -16,31 +21,40 @@ public class Berita {
     @Column(name = "id_berita")
     private Long idBerita;
 
-    @Column(name = "jenis_kegiatan")
-    private String jenisKegiatan;
+    @Column(name = "judul")
+    private String judul;
 
     @Column(name = "penulis")
     private String penulis;
 
-    @Lob
     @Column(name = "gambar")
-    private byte[] gambar;
+    private String gambar;
 
     @Column(name = "teks", columnDefinition = "TEXT")
     private String teks;
 
-    @Column(name = "detial_berita")
-    private String detialBerita;
+    @Column(name = "tgl_terbit")
+    private String tglTerbit;
 
-    // Constructors
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updated_at;
 
-    
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime created_at;
 
-    public Berita(String jenisKegiatan, String penulis, byte[] gambar, String teks , String detialBerita) {
-        this.jenisKegiatan = jenisKegiatan;
-        this.penulis = penulis;
-        this.gambar = gambar;
-        this.teks = teks;
-        this.detialBerita = detialBerita;
-    }
+    @Column(name = "update_by")
+    private String update_by;
+
+    @Column(name = "create_by")
+    private String create_by;
+
+    // public Berita(String jenisKegiatan, String penulis, byte[] gambar, String teks , String detialBerita) {
+    //     this.jenisKegiatan = jenisKegiatan;
+    //     this.penulis = penulis;
+    //     this.gambar = gambar;
+    //     this.teks = teks;
+    //     this.detialBerita = detialBerita;
+    // }
 }

@@ -19,34 +19,59 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Admin>> getAllAdmins() {
-        List<Admin> admins = adminService.getAllAdmins();
-        return ResponseEntity.ok(admins);
+    // Endpoint untuk menyimpan data admin baru
+     @PostMapping
+    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
+        Admin createdAdmin = adminService.saveAdmin(admin);
+        return new ResponseEntity<>(createdAdmin, HttpStatus.CREATED);
     }
-
+    // Endpoint untuk mendapatkan data admin berdasarkan ID
     @GetMapping("/{id}")
-    public ResponseEntity<Admin> getAdminById(@PathVariable int id) {
+    public ResponseEntity<Admin> getAdminById(@PathVariable Long id) {
         Admin admin = adminService.getAdminById(id);
-        if (admin == null) {
+        if (admin != null) {
+            return ResponseEntity.ok(admin);
+        } else {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(admin);
+    }
+    // Jika diperlukan, Anda bisa menambahkan endpoint lain untuk keperluan bisnis logika lainnya
+    @GetMapping
+    public ResponseEntity<List<Admin>> getAllAdmins() {
+        List<Admin> adminList = adminService.getAllAdmins();
+        return new ResponseEntity<>(adminList, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
-        Admin savedAdmin = adminService.saveAdmin(admin);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedAdmin);
+    @PutMapping("/{id}")
+    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Admin updatedAdmin) {
+        Admin admin = adminService.getAdminById(id);
+        if (admin != null) {
+            admin.setEmail(updatedAdmin.getEmail());
+            admin.setNama_lengkap(updatedAdmin.getNama_lengkap());
+            admin.setNip(updatedAdmin.getNip());
+            admin.setImage(updatedAdmin.getImage());
+            admin.setNo_hp(updatedAdmin.getNo_hp());
+            admin.setRole(updatedAdmin.getRole());
+            admin.setCreated_at(updatedAdmin.getCreated_at());
+            admin.setCreated_by(updatedAdmin.getCreated_by());
+            admin.setUpdated_at(updatedAdmin.getUpdated_at());
+            admin.setUpdated_by(updatedAdmin.getUpdated_by());
+
+            Admin updatedAdminEntity = adminService.saveAdmin(admin);
+            return ResponseEntity.ok(updatedAdminEntity);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdmin(@PathVariable int id) {
+    public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {
         Admin admin = adminService.getAdminById(id);
-        if (admin == null) {
+        if (admin != null) {
+            adminService.deleteAdmin(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
             return ResponseEntity.notFound().build();
         }
-        adminService.deleteAdmin(id);
-        return ResponseEntity.noContent().build();
     }
 }
