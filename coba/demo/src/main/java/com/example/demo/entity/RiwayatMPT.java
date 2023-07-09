@@ -34,7 +34,7 @@ public class RiwayatMPT implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_user")
-    private User id_user;
+    private User user;
 
     @Column(name = "status_mpt")
     private String status_mpt;

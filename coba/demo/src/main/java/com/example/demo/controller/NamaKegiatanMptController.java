@@ -3,15 +3,20 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.NamaKegiatanMpt;
 import com.example.demo.service.NamaKegiatanMptService;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/nama_kegiatan_mpt")
+@RequestMapping("/nama-kegiatan-mpt")
 public class NamaKegiatanMptController {
 
     private final NamaKegiatanMptService namaKegiatanMptService;
@@ -22,19 +27,13 @@ public class NamaKegiatanMptController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<NamaKegiatanMpt> getNamaKegiatanMptById(@PathVariable("id") Long id) {
-        NamaKegiatanMpt namaKegiatanMpt = namaKegiatanMptService.getNamaKegiatanMptById(id);
+    public ResponseEntity<NamaKegiatanMpt> getNamaKegiatanMpt(@PathVariable Long id) {
+        NamaKegiatanMpt namaKegiatanMpt = namaKegiatanMptService.getNamaKegiatanMpt(id);
         if (namaKegiatanMpt != null) {
             return ResponseEntity.ok(namaKegiatanMpt);
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @GetMapping
-    public ResponseEntity<List<NamaKegiatanMpt>> getAllNamaKegiatanMpt() {
-        List<NamaKegiatanMpt> namaKegiatanMptList = namaKegiatanMptService.getAllNamaKegiatanMpt();
-        return ResponseEntity.ok(namaKegiatanMptList);
     }
 
     @PostMapping
@@ -44,7 +43,8 @@ public class NamaKegiatanMptController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<NamaKegiatanMpt> updateNamaKegiatanMpt(@PathVariable("id") Long id, @RequestBody NamaKegiatanMpt updatedNamaKegiatanMpt) {
+    public ResponseEntity<NamaKegiatanMpt> updateNamaKegiatanMpt(
+            @PathVariable Long id, @RequestBody NamaKegiatanMpt updatedNamaKegiatanMpt) {
         NamaKegiatanMpt namaKegiatanMpt = namaKegiatanMptService.updateNamaKegiatanMpt(id, updatedNamaKegiatanMpt);
         if (namaKegiatanMpt != null) {
             return ResponseEntity.ok(namaKegiatanMpt);
@@ -54,12 +54,8 @@ public class NamaKegiatanMptController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNamaKegiatanMpt(@PathVariable("id") Long id) {
-        boolean deleted = namaKegiatanMptService.deleteNamaKegiatanMpt(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deleteNamaKegiatanMpt(@PathVariable Long id) {
+        namaKegiatanMptService.deleteNamaKegiatanMpt(id);
+        return ResponseEntity.noContent().build();
     }
 }

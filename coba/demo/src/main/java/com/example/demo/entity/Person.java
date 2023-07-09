@@ -40,6 +40,9 @@ public class Person {
     @Column(name = "gambar2")
     private byte[] gambar2;
 
+    @Column(length = 4096)
+    private String fieldWithMaxLength4096;
+    
     public Person(String nama, String alamat, byte[] gambar1Data, byte[] gambar2Data) {
         this.nama = nama;
         this.alamat = alamat;

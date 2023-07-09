@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.NamaKegiatanMpt;
 import com.example.demo.repository.NamaKegiatanMptRepository;
 
-import java.util.List;
-
 @Service
 public class NamaKegiatanMptService {
 
@@ -18,12 +16,8 @@ public class NamaKegiatanMptService {
         this.namaKegiatanMptRepository = namaKegiatanMptRepository;
     }
 
-    public NamaKegiatanMpt getNamaKegiatanMptById(Long id) {
+    public NamaKegiatanMpt getNamaKegiatanMpt(Long id) {
         return namaKegiatanMptRepository.findById(id).orElse(null);
-    }
-
-    public List<NamaKegiatanMpt> getAllNamaKegiatanMpt() {
-        return namaKegiatanMptRepository.findAll();
     }
 
     public NamaKegiatanMpt createNamaKegiatanMpt(NamaKegiatanMpt namaKegiatanMpt) {
@@ -33,24 +27,19 @@ public class NamaKegiatanMptService {
     public NamaKegiatanMpt updateNamaKegiatanMpt(Long id, NamaKegiatanMpt updatedNamaKegiatanMpt) {
         NamaKegiatanMpt namaKegiatanMpt = namaKegiatanMptRepository.findById(id).orElse(null);
         if (namaKegiatanMpt != null) {
-        namaKegiatanMpt.setNama_kegiatan(updatedNamaKegiatanMpt.getNama_kegiatan());
-        namaKegiatanMpt.setCreated_at(updatedNamaKegiatanMpt.getCreated_at());
-        namaKegiatanMpt.setCreated_by(updatedNamaKegiatanMpt.getCreated_by());
-        namaKegiatanMpt.setUpdated_at(updatedNamaKegiatanMpt.getUpdated_at());
-        namaKegiatanMpt.setUpdated_by(updatedNamaKegiatanMpt.getUpdated_by());
-        // Set other updated fields
-        return namaKegiatanMptRepository.save(namaKegiatanMpt);
+            namaKegiatanMpt.setNama_kegiatan(updatedNamaKegiatanMpt.getNama_kegiatan());
+            namaKegiatanMpt.setCreated_at(updatedNamaKegiatanMpt.getCreated_at());
+            namaKegiatanMpt.setCreated_by(updatedNamaKegiatanMpt.getCreated_by());
+            namaKegiatanMpt.setUpdated_at(updatedNamaKegiatanMpt.getUpdated_at());
+            namaKegiatanMpt.setUpdated_by(updatedNamaKegiatanMpt.getUpdated_by());
+            // Set other updated fields
+            return namaKegiatanMptRepository.save(namaKegiatanMpt);
         } else {
-        return null;
+            return null;
         }
-        }
-    public boolean deleteNamaKegiatanMpt(Long id) {
-        NamaKegiatanMpt namaKegiatanMpt = namaKegiatanMptRepository.findById(id).orElse(null);
-        if (namaKegiatanMpt != null) {
-            namaKegiatanMptRepository.delete(namaKegiatanMpt);
-            return true;
-        } else {
-            return false;
-        }
+    }
+
+    public void deleteNamaKegiatanMpt(Long id) {
+        namaKegiatanMptRepository.deleteById(id);
     }
 }

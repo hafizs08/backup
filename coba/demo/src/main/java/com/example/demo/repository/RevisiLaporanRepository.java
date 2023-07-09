@@ -3,10 +3,8 @@ package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Prestasi;
-
+import com.example.demo.entity.RevisiLaporan;
 
 @Repository
-public interface PrestasiRepository extends JpaRepository<Prestasi, Long> {
+public interface RevisiLaporanRepository extends JpaRepository<RevisiLaporan, Long> {
 }
-

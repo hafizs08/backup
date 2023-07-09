@@ -1,50 +1,59 @@
  package com.example.demo.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
 
 @Entity
-@Table(name = "prestasi")
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "prestasi")
 public class Prestasi {
-  
-    
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_prestasi")
-    private Long idPrestasi;
-  
-    @Column(name = "nim")
-    private String nim;
-  
-    @Column(name = "nama")
-    private String nama;
-  
-    @Column(name = "kegiatan")
-    private String kegiatan;
-  
+    private Long id_prestasi;
+
+    @ManyToOne
+    @JoinColumn(name = "id_ormawa")
+    private Ormawa id_ormawa;
+
+    @Column(name = "id_user")
+    private String id_user;
+
+    @Column(name = "nama_kegiatan")
+    private String nama_kegiatan;
+
+    @Column(name = "waktu_penyelenggaraan")
+    private String waktu_penyelenggaraan;
+
     @Column(name = "tingkat")
     private String tingkat;
-  
+
     @Column(name = "prestasi_dicapai")
-    private String prestasiDicapai;
-  
+    private String prestasi_dicapai;
+
+    @Column(name = "unggah_sertifikat")
+    private String unggah_sertifikat;
+
+    @Column(name = "created_at")
+    private String created_at;
+
+    @Column(name = "created_by")
+    private String created_by;
+
+    @Column(name = "updated_at")
+    private String updated_at;
+
+    @Column(name = "updated_by")
+    private String updated_by;
+
     // Constructors, getters, and setters
-    // ...
-    public Prestasi(String nim2, String nama2, String kegiatan2, String tingkat2, String prestasiDicapai2) {
-        this.nim = nim2;
-        this.nama = nama2;
-        this.kegiatan = kegiatan2;
-        this.tingkat = tingkat2;
-        this.prestasiDicapai = prestasiDicapai2;
-        
-    }
 }

@@ -11,12 +11,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Table(name = "admin")
-@NoArgsConstructor
 public class Admin {
     @Id
     @Column(name = "id_admin")
@@ -53,17 +54,7 @@ public class Admin {
     private String updated_by;
 
     
-    public Admin(String email, String nama_lengkap, String nip, String image, String no_hp, String role,
-                String created_at, String created_by, String updated_at, String updated_by) {
-        this.email = email;
-        this.nama_lengkap = nama_lengkap;
-        this.nip = nip;
-        this.image = image;
-        this.no_hp = no_hp;
-        this.role = role;
-        this.created_at = created_at;
-        this.created_by = created_by;
-        this.updated_at = updated_at;
-        this.updated_by = updated_by;
+    public Admin(String id_admin) {
+        this.id_admin =  id_admin;
     }
 }

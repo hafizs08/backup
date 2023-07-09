@@ -1,25 +1,26 @@
 package com.example.demo.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
-
-import javax.persistence.*;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 @Entity
 @Table(name = "berita")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Berita {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_berita")
-    private Long idBerita;
+    private Long id_berita;
 
     @Column(name = "judul")
     private String judul;
@@ -30,31 +31,23 @@ public class Berita {
     @Column(name = "gambar")
     private String gambar;
 
-    @Column(name = "teks", columnDefinition = "TEXT")
+    @Column(name = "teks" , length = 4096)
     private String teks;
 
     @Column(name = "tgl_terbit")
-    private String tglTerbit;
-
- 
-    @Column(name = "updated_at")
-    private LocalDateTime updated_at;
-
+    private String tgl_terbit;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private String created_at;
 
-    @Column(name = "update_by")
-    private String update_by;
+    @Column(name = "created_by")
+    private String created_by;
 
-    @Column(name = "create_by")
-    private String create_by;
+    @Column(name = "updated_at")
+    private String updated_at;
 
-    // public Berita(String jenisKegiatan, String penulis, byte[] gambar, String teks , String detialBerita) {
-    //     this.jenisKegiatan = jenisKegiatan;
-    //     this.penulis = penulis;
-    //     this.gambar = gambar;
-    //     this.teks = teks;
-    //     this.detialBerita = detialBerita;
-    // }
+    @Column(name = "updated_by")
+    private String updated_by;
+
+    // Constructors, getters, setters, and other methods
 }

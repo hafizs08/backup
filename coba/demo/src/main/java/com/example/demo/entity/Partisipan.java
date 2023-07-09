@@ -19,9 +19,9 @@ public class Partisipan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_partisipan;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usulan")
-    private Usulan usulan;
+    // @ManyToOne
+    // @JoinColumn(name = "id_usulan")
+    // private Usulan usulan;
 
     @Column(name = "no_induk")
     private String no_induk;

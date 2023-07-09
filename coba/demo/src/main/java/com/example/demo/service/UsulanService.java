@@ -42,8 +42,11 @@ public class UsulanService {
         return usulanRepository.findById(id).orElse(null);
     }
 
+    public Usulan updateUsulan(Usulan usulan) {
+        return usulanRepository.save(usulan);
+    }
+
     public void deleteUsulan(Long id) {
         usulanRepository.deleteById(id);
     }
-
 }

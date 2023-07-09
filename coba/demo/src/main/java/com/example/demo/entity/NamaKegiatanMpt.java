@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "nama_kegiatan_mpt")
 public class NamaKegiatanMpt {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_nama_kegiatan_mpt")
     private Long id_nama_kegiatan_mpt;
 
@@ -36,4 +35,7 @@ public class NamaKegiatanMpt {
     @Column(name = "updated_by")
     private String updated_by;
 
+    public NamaKegiatanMpt(Long id_nama_kegiatan_mpt) {
+        this.id_nama_kegiatan_mpt = id_nama_kegiatan_mpt;
+    }
 }

@@ -31,7 +31,7 @@ public class RiwayatMPTService {
         RiwayatMPT riwayatMPT = getRiwayatMPTById(id);
         if (riwayatMPT != null) {
             riwayatMPT.setId_kegiatan_per_periode_mpt(updatedRiwayatMPT.getId_kegiatan_per_periode_mpt());
-            riwayatMPT.setId_user(updatedRiwayatMPT.getId_user());
+            // riwayatMPT.setId_user(updatedRiwayatMPT.getId_user());
             riwayatMPT.setStatus_mpt(updatedRiwayatMPT.getStatus_mpt());
             riwayatMPT.setFile_sertifikat_mpt(updatedRiwayatMPT.getFile_sertifikat_mpt());
             riwayatMPT.setHash(updatedRiwayatMPT.getHash());

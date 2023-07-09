@@ -22,10 +22,10 @@ import javax.persistence.CascadeType;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "laporan_kegiatan")
+@Table(name = "laporan")
 public class Laporan {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_laporan")
     private Long id_laporan;
 
@@ -37,8 +37,9 @@ public class Laporan {
     @JoinColumn(name = "id_ormawa")
     private Ormawa id_ormawa;
 
-    @Column(name = "id_usulan")
-    private Long id_usulan;
+    @ManyToOne
+    @JoinColumn(name = "id_usulan")
+    private Usulan id_usulan;
 
     private String pencapaian;
 
@@ -59,12 +60,13 @@ public class Laporan {
     @Column(name = "total_selisih")
     private Long total_selisih;
 
-    @Column(name = "latar_belakang")
+    @Column(name = "latar_belakang" ,length = 4096)
     private String latar_belakang;
 
-    @Column(name = "hasil_kegiatan")
+    @Column(name = "hasil_kegiatan" , length = 4096)
     private String hasil_kegiatan;
-
+   
+    @Column(name = "penutup" , length = 1024)
     private String penutup;
 
     @Column(name = "foto_postingan_kegiatan")
@@ -100,4 +102,9 @@ public class Laporan {
 
     @Column(name = "updated_by")
     private String updated_by;
+
+    public Laporan(Long id_laporan) {
+        this.id_laporan = id_laporan;
+    }
+
 }

@@ -45,6 +45,9 @@ public class KegiatanPerPeriodeMpt {
     @Column(name = "updated_by")
     private String updated_by;
 
+    public KegiatanPerPeriodeMpt(Long id_kegiatan_per_periode_mpt) {
+        this.id_kegiatan_per_periode_mpt = id_kegiatan_per_periode_mpt;
+    }
     // Constructors, getters, setters, and other methods
 }
     // public KegiatanPerPeriodeMpt(Long id_kegiatan_per_periode_mpt) {

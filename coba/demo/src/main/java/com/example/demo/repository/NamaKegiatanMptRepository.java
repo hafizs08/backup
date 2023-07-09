@@ -7,4 +7,5 @@ import com.example.demo.entity.NamaKegiatanMpt;
 
 @Repository
 public interface NamaKegiatanMptRepository extends JpaRepository<NamaKegiatanMpt, Long> {
+    
 }

@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +20,6 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Data
@@ -105,40 +103,40 @@ public class Usulan {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usulan_id")
-    private List<BiayaKegiatan> biayaKegiatan;
+    private List<BiayaKegiatan> biaya_kegiatan;
 
-    @Column(name = "latar_belakang")
+    @Column(name = "latar_belakang" , length = 4096)
     private String latar_belakang;
 
-    @Column(name = "tujuan_kegiatan")
+    @Column(name = "tujuan_kegiatan", length = 1024)
     private String tujuan_kegiatan;
 
-    @Column(name = "manfaat_kegiatan")
+    @Column(name = "manfaat_kegiatan", length = 1024)
     private String manfaat_kegiatan;
 
-    @Column(name = "bentuk_pelaksanaan_kegiatan")
+    @Column(name = "bentuk_pelaksanaan_kegiatan" , length = 1024)
     private String bentuk_pelaksanaan_kegiatan;
 
-    @Column(name = "target_pencapaian_kegiatan")
+    @Column(name = "target_pencapaian_kegiatan", length = 1024)
     private String target_pencapaian_kegiatan;
 
-    @Column(name = "waktu_dan_tempat_pelaksanaan")
+    @Column(name = "waktu_dan_tempat_pelaksanaan", length = 1024)
     private String waktu_dan_tempat_pelaksanaan;
 
-    @Column(name = "rencana_anggaran_kegiatan")
+    @Column(name = "rencana_anggaran_kegiatan", length = 2048)
     private String rencana_anggaran_kegiatan;
 
     @Column(name = "total_biaya")
     private Integer total_biaya;
 
-    // @ManyToOne
-    // @JoinColumn(name = "usulan_id")
-    // private List<TertibAcara> tertibAcara;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usulan_id")
+    private List<TertibAcaraa> tertibAcara;
 
-    @Column(name = "perlengkapan_dan_peralatan")
+    @Column(name = "perlengkapan_dan_peralatan" , length = 2048)
     private String perlengkapan_dan_peralatan;
 
-    @Column(name = "penutup")
+    @Column(name = "penutup" , length = 1048)
     private String penutup;
 
     @Column(name = "foto_postingan_kegiatan")
@@ -180,12 +178,12 @@ public class Usulan {
     @Column(name = "updated_by")
     private String updated_by;
 
-   
-  
+    public Usulan(Long id_usulan) {
+        this.id_usulan = id_usulan;
+    }
 
     // @OneToMany(mappedBy = "usulan", cascade = CascadeType.ALL)
     // private List<BiayaKegiatan> biayaKegiatan;
     // Constructors, getters, and setters
 }
-  
 

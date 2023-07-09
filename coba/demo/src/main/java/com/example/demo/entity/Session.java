@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "session")
 public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_session")
     private Long id_session;
 
@@ -58,6 +57,9 @@ public class Session {
 
     private String status;
     private String keterangan;
+
+    @Column(name = "file_session ")
+    private String file_session;
 
     @Column(name = "updated_at")
     private String updated_at;

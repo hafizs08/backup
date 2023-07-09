@@ -12,38 +12,43 @@ import com.example.demo.repository.BeritaRepository;
 
 @Service
 public class BeritaService {
-    private BeritaRepository beritaRepository;
-    
-    @Autowired
+    private final BeritaRepository beritaRepository;
+
     public BeritaService(BeritaRepository beritaRepository) {
         this.beritaRepository = beritaRepository;
     }
-    public Berita saveBerita(Berita berita) {
+
+    public Berita createBerita(Berita berita) {
         return beritaRepository.save(berita);
     }
-    public List<Berita> getAllBeritas() {
-        return beritaRepository.findAll();
-        
+
+    public Berita updateBerita(Long id, Berita updatedBerita) {
+        Berita berita = beritaRepository.findById(id).orElse(null);
+        if (berita != null) {
+            berita.setJudul(updatedBerita.getJudul());
+            berita.setPenulis(updatedBerita.getPenulis());
+            berita.setGambar(updatedBerita.getGambar());
+            berita.setTeks(updatedBerita.getTeks());
+            berita.setTgl_terbit(updatedBerita.getTgl_terbit());
+            berita.setCreated_at(updatedBerita.getCreated_at());
+            berita.setCreated_by(updatedBerita.getCreated_by());
+            berita.setUpdated_at(updatedBerita.getUpdated_at());
+            berita.setUpdated_by(updatedBerita.getUpdated_by());
+            return beritaRepository.save(berita);
+        } else {
+            return null;
+        }
     }
 
-    public Berita getBeritaById(long id) {
-        return beritaRepository.findById((long) id).orElse(null);
+    public List<Berita> getAllBerita() {
+        return beritaRepository.findAll();
     }
-    public void deleteBerita(Berita existingBerita) {
-        beritaRepository.delete(existingBerita);
+
+    public Berita getBeritaById(Long id) {
+        return beritaRepository.findById(id).orElse(null);
     }
-    // public Berita updateBerita(Long id, Berita updatedBerita) {
-    //     Optional<Berita> optionalBerita = beritaRepository.findById(id);
-    //     if (optionalBerita.isPresent()) {
-    //         Berita berita = optionalBerita.get();
-    //         berita.setJenisKegiatan(updatedBerita.getJenisKegiatan());
-    //         berita.setPenulis(updatedBerita.getPenulis());
-    //         berita.setGambar(updatedBerita.getGambar());
-    //         berita.setTeks(updatedBerita.getTeks());
-    //         berita.setDetialBerita(updatedBerita.getDetialBerita());
-    //         return beritaRepository.save(berita);
-    //     } else {
-    //         throw new NoSuchElementException("Berita not found with id: " + id);
-    //     }
-    // }
+
+    public void deleteBerita(Long id) {
+        beritaRepository.deleteById(id);
+    }
 }
