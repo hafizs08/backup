@@ -1,54 +1,46 @@
 package com.example.demo.entity;
 
-import lombok.Data;
-import lombok.Getter;
+import java.io.Serializable;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
-
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "riwayat_mpt")
-public class RiwayatMPT {
+public class RiwayatMPT implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_riwayat_mpt")
-    private long id_riwayat_mpt;
+    private Long id_riwayat_mpt;
 
     @ManyToOne
-    @JoinColumn(name = "id_kegiatan_mpt")
-    private KegiatanMPT kegiatanMPT;
+    @JoinColumn(name = "id_kegiatan_per_periode_mpt")
+    private KegiatanPerPeriodeMpt id_kegiatan_per_periode_mpt;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
-    private User user;
+    private User id_user;
 
     @Column(name = "status_mpt")
     private String status_mpt;
 
-    @Column(name = "file_seritikat_mpt")
-    private String file_seritikat_mpt;
+    @Column(name = "file_sertifikat_mpt")
+    private String file_sertifikat_mpt;
 
     @Column(name = "hash")
     private String hash;
@@ -59,36 +51,15 @@ public class RiwayatMPT {
     @Column(name = "keterangan_sa")
     private String keterangan_sa;
 
-     @UpdateTimestamp
-    @Column(name = "updated_at")
-    private LocalDateTime updated_at;
-
-    @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private String created_at;
 
-    @Column(name = "update_by")
-    private String update_by;
+    @Column(name = "created_by")
+    private String created_by;
 
-    @Column(name = "create_by")
-    private String create_by;
+    @Column(name = "updated_at")
+    private String updated_at;
 
-
-    // public void setId_kegiatan_mpt(Object id_kegiatan_mpt) {
-    // }
-
-    // public boolean isPresent() {
-    //     return false;
-    // }
-
-    // public RiwayatMPT get() {
-    //     return null;
-    // }
-
-
-
-    // Getter for id_kegiatan_mpt
-   
-    
-    // Setters, Constructors, and other methods
+    @Column(name = "updated_by")
+    private String updated_by;
 }

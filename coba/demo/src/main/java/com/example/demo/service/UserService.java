@@ -18,7 +18,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(int id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -26,23 +26,36 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(int id, User user) {
-        User existingUser = userRepository.findById(id).orElse(null);
-        if (existingUser != null) {
-            // Update the properties of existingUser with the properties of user
-            // ...
-            return userRepository.save(existingUser);
-        } else {
-            return null;
-        }
+    public User updateUser(String id, User updatedUser) {
+        User user = getUserById(id);
+        user.setEmail(updatedUser.getEmail());
+        user.setNama_lengkap(updatedUser.getNama_lengkap());
+        user.setNim(updatedUser.getNim());
+        user.setNo_hp(updatedUser.getNo_hp());
+        user.setImage(updatedUser.getImage());
+        user.setPoint_mpt(updatedUser.getPoint_mpt());
+        user.setSemester(updatedUser.getSemester());
+        user.setKelas(updatedUser.getKelas());
+        user.setPeriode_mpt(updatedUser.getPeriode_mpt());
+        user.setStatus_mpt(updatedUser.getStatus_mpt());
+        user.setProdi(updatedUser.getProdi());
+        user.setUpdated_at(updatedUser.getUpdated_at());
+        user.setUpdated_by(updatedUser.getUpdated_by());
+
+        return userRepository.save(user);
     }
 
-    public boolean deleteUser(int id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
+    // public void deleteUser(Long id) {
+    //     userRepository.deleteById(id);
+    // }
+    public boolean deleteUser(String id) {
+    if (userRepository.existsById(id)) {
+        userRepository.deleteById(id);
+        return true;
+    } else {
+        return false;
     }
+}
+
+    
 }

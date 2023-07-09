@@ -10,7 +10,7 @@ import com.example.demo.entity.RiwayatMPT;
 import com.example.demo.entity.Usulan;
 
 @Repository
-public interface UsulanRepository extends JpaRepository<Usulan, Integer> {
+public interface UsulanRepository extends JpaRepository<Usulan, Long> {
     // Tambahkan kueri khusus jika diperlukan
     
 }

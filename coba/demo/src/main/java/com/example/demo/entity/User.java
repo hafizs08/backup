@@ -2,92 +2,83 @@ package com.example.demo.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import javax.persistence.*;
+import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Table(name = "user")
-public class User {
+
+public class User implements Serializable {
+
     @Id
     @Column(name = "id_user")
-    private String idUser;
+    private String id_user;
 
-    @ManyToOne
-    @JoinColumn(name = "id_ormawa")
-    private Ormawa ormawa;
-
-    @Column(name = "id_ormawaB")
-    private int idOrmawaB;
+    @ElementCollection
+    @CollectionTable(name = "user_ormawa", joinColumns = @JoinColumn(name = "id_user"))
+    @Column(name = "id_ormawa")
+    private List<Long> id_ormawa;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "nama_lengkap")
-    private String namaLengkap;
+    private String nama_lengkap;
 
     @Column(name = "nim")
     private String nim;
 
     @Column(name = "no_hp")
-    private String noHp;
+    private String no_hp;
 
     @Column(name = "image")
     private String image;
 
     @Column(name = "point_mpt")
-    private int pointMpt;
+    private Integer point_mpt;
 
     @Column(name = "semester")
-    private String semester;
+    private Integer semester;
 
     @Column(name = "kelas")
     private String kelas;
 
     @Column(name = "periode_mpt")
-    private String periodeMpt;
+    private String periode_mpt;
 
     @Column(name = "status_mpt")
-    private String statusMpt;
+    private String status_mpt;
 
     @Column(name = "prodi")
     private String prodi;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private LocalDateTime updated_at;
-
-    @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private String created_at;
 
-    @Column(name = "update_by")
-    private String update_by;
+    @Column(name = "updated_at")
+    private String updated_at;
 
-    @Column(name = "create_by")
-    private String create_by;
-    // Constructors, getters, and setters
+    @Column(name = "created_by")
+    private String created_by;
+
+    @Column(name = "updated_by")
+    private String updated_by;
+
+    public User(String id_user) {
+        this.id_user =  id_user;
+    }
+
 }

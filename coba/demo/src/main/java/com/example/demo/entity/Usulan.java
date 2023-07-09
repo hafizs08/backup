@@ -1,9 +1,9 @@
 package com.example.demo.entity;
 
 import java.sql.Time;
-import java.time.LocalDateTime;
+
 import java.time.LocalTime;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,34 +17,30 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-
-
 
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "usulan_mpt")
+@AllArgsConstructor
+@Table(name = "usulan")
 public class Usulan {
 
     @Id
+    @Column(name = "id_usulan")
     private Long id_usulan;
 
-    @Column(name = "id_user")
-    private String id_user;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User id_user;
 
-    @Column(name = "id_ormawa")
-    private Long id_ormawa;
+    @ManyToOne
+    @JoinColumn(name = "id_ormawa")
+    private Ormawa id_ormawa;
 
     @Column(name = "pembiayaan")
     private String pembiayaan;
@@ -58,16 +54,14 @@ public class Usulan {
     @Column(name = "kategori_bentuk_kegiatan")
     private String kategori_bentuk_kegiatan;
 
-    @Column(name = "deskripsi_kegiatan", length = 1000)
+    @Column(name = "deskripsi_kegiatan")
     private String deskripsi_kegiatan;
 
     @Column(name = "tanggal_mulai_kegiatan")
-    @Temporal(TemporalType.DATE)
-    private Date tanggal_mulai_kegiatan;
+    private String tanggal_mulai_kegiatan;
 
     @Column(name = "tanggal_selesai_kegiatan")
-    @Temporal(TemporalType.DATE)
-    private Date tanggal_selesai_kegiatan;
+    private String tanggal_selesai_kegiatan;
 
     @Column(name = "waktu_mulai_kegiatan")
     private String waktu_mulai_kegiatan;
@@ -79,12 +73,10 @@ public class Usulan {
     private String tempat_kegiatan;
 
     @Column(name = "tanggal_keberangkatan")
-    @Temporal(TemporalType.DATE)
-    private Date tanggal_keberangkatan;
+    private String tanggal_keberangkatan;
 
     @Column(name = "tanggal_kepulangan")
-    @Temporal(TemporalType.DATE)
-    private Date tanggal_kepulangan;
+    private String tanggal_kepulangan;
 
     @Column(name = "jumlah_partisipan")
     private String jumlah_partisipan;
@@ -92,7 +84,7 @@ public class Usulan {
     @Column(name = "kategori_jumlah_partisipan")
     private String kategori_jumlah_partisipan;
 
-    @Column(name = "target_kegiatan", length = 1000)
+    @Column(name = "target_kegiatan")
     private String target_kegiatan;
 
     @Column(name = "total_pendanaan")
@@ -101,49 +93,52 @@ public class Usulan {
     @Column(name = "kategori_total_pendanaan")
     private String kategori_total_pendanaan;
 
-    @Column(name = "keterangan", length = 1000)
+    @Column(name = "keterangan")
     private String keterangan;
 
     @Column(name = "tanda_tangan_ormawa")
     private String tanda_tangan_ormawa;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usulanMPT")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usulan_id")
     private List<Partisipan> partisipan;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usulanMPT")
-    private List<BiayaKegiatan> biaya_kegiatan;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usulan_id")
+    private List<BiayaKegiatan> biayaKegiatan;
 
-    @Column(name = "latar_belakang", length = 1000)
+    @Column(name = "latar_belakang")
     private String latar_belakang;
 
-    @Column(name = "tujuan_kegiatan", length = 1000)
+    @Column(name = "tujuan_kegiatan")
     private String tujuan_kegiatan;
 
-    @Column(name = "manfaat_kegiatan", length = 1000)
+    @Column(name = "manfaat_kegiatan")
     private String manfaat_kegiatan;
 
-    @Column(name = "bentuk_pelaksanaan_kegiatan", length = 1000)
+    @Column(name = "bentuk_pelaksanaan_kegiatan")
     private String bentuk_pelaksanaan_kegiatan;
 
-    @Column(name = "target_pencapaian_kegiatan", length = 1000)
+    @Column(name = "target_pencapaian_kegiatan")
     private String target_pencapaian_kegiatan;
 
-    @Column(name = "waktu_dan_tempat_pelaksanaan", length = 1000)
+    @Column(name = "waktu_dan_tempat_pelaksanaan")
     private String waktu_dan_tempat_pelaksanaan;
 
-    @Column(name = "rencana_anggaran_kegiatan", length = 1000)
+    @Column(name = "rencana_anggaran_kegiatan")
     private String rencana_anggaran_kegiatan;
 
     @Column(name = "total_biaya")
-    private int total_biaya;
+    private Integer total_biaya;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usulanMPT")
-    private List<TertibAcara> tertib_acara;
+    // @ManyToOne
+    // @JoinColumn(name = "usulan_id")
+    // private List<TertibAcara> tertibAcara;
 
-    @Column(name = "perlengkapan_dan_peralatan", length = 1000)
+    @Column(name = "perlengkapan_dan_peralatan")
     private String perlengkapan_dan_peralatan;
 
-    @Column(name = "penutup", length = 1000)
+    @Column(name = "penutup")
     private String penutup;
 
     @Column(name = "foto_postingan_kegiatan")
@@ -162,7 +157,7 @@ public class Usulan {
     private String file_usulan_kegiatan;
 
     @Column(name = "validasi_pembina")
-    private boolean validasi_pembina;
+    private String validasi_pembina;
 
     @Column(name = "tanda_tangan_pembina")
     private String tanda_tangan_pembina;
@@ -174,12 +169,10 @@ public class Usulan {
     private String roles;
 
     @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private String created_at;
 
     @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private String updated_at;
 
     @Column(name = "created_by")
     private String created_by;
@@ -187,7 +180,12 @@ public class Usulan {
     @Column(name = "updated_by")
     private String updated_by;
 
-    // Constructors, getters, and setters
+   
+  
 
-    // ... (getters and setters for all fields)
+    // @OneToMany(mappedBy = "usulan", cascade = CascadeType.ALL)
+    // private List<BiayaKegiatan> biayaKegiatan;
+    // Constructors, getters, and setters
 }
+  
+

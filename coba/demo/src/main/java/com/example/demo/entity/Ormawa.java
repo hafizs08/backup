@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,15 +14,26 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ormawa {
+public class Ormawa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ormawa")
-    private int idOrmawa;
+    private Integer id_ormawa;
 
     @Column(name = "nama_ormawa")
-    private String namaOrmawa;
+    private String nama_ormawa;
+
+    @Column(name = "nama_singkatan_ormawa")
+    private String nama_singkatan_ormawa;
+
+    @Column(name = "logo_ormawa")
+    private String logo_ormawa;
+
+    @ElementCollection
+    @CollectionTable(name = "anggota_ormawa",
+            joinColumns = @JoinColumn(name = "id_ormawa"))
+    @Column(name = "list_anggota")
+    private List<String> list_anggota;
 
     @Column(name = "pembina")
     private String pembina;
@@ -30,42 +44,45 @@ public class Ormawa {
     @Column(name = "wakil")
     private String wakil;
 
+    @Column(name = "sekretaris")
+    private String sekretaris;
+
     @Column(name = "bendahara")
     private String bendahara;
 
     @Column(name = "jumlah_anggota")
-    private int jumlahAnggota;
+    private Integer jumlah_anggota;
 
     @Column(name = "foto_pembina")
-    private byte[] fotoPembina;
+    private String foto_pembina;
 
-    @Lob
     @Column(name = "foto_ketua")
-    private byte[] fotoKetua;
+    private String foto_ketua;
 
-    @Lob
     @Column(name = "foto_wakil")
-    private byte[] fotoWakil;
+    private String foto_wakil;
 
-    @Lob
+    @Column(name = "foto_sekretaris")
+    private String foto_sekretaris;
+
     @Column(name = "foto_bendahara")
-    private byte[] fotoBendahara;
+    private String foto_bendahara;
 
-    // Constructors, getters, and setters
-    // ...
+    @Column(name = "created_at")
+    private String created_at;
 
-    public Ormawa(String namaOrmawa, String pembina, String ketua, String wakil, String bendahara, int jumlahAnggota, byte[] fotoPembina, byte[] fotoKetua, byte[] fotoWakil, byte[] fotoBendahara) {
-        this.namaOrmawa = namaOrmawa;
-        this.pembina = pembina;
-        this.ketua = ketua;
-        this.wakil = wakil;
-        this.bendahara = bendahara;
-        this.jumlahAnggota = jumlahAnggota;
-        this.fotoPembina = fotoPembina;
-        this.fotoKetua = fotoKetua;
-        this.fotoWakil = fotoWakil;
-        this.fotoBendahara = fotoBendahara;
+    @Column(name = "created_by")
+    private String created_by;
+
+    @Column(name = "updated_by")
+    private String updated_by;
+
+    @Column(name = "updated_at")
+    private String updated_at;
+
+    public Ormawa(int id_ormawa) {
+        this.id_ormawa = id_ormawa;
     }
-
 }
+
 

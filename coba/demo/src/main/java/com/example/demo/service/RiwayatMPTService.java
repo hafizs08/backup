@@ -5,57 +5,49 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.RiwayatMPT;
 import com.example.demo.repository.RiwayatMPTRepository;
-
+import java.lang.RuntimeException;
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service
 public class RiwayatMPTService {
 
-    private RiwayatMPTRepository riwayatMPTRepository;
-
     @Autowired
-    public RiwayatMPTService(RiwayatMPTRepository riwayatMPTRepository) {
-        this.riwayatMPTRepository = riwayatMPTRepository;
-    }
+    private RiwayatMPTRepository riwayatMPTRepository;
 
     public List<RiwayatMPT> getAllRiwayatMPT() {
         return riwayatMPTRepository.findAll();
     }
 
-    
-    // public Optional<RiwayatMPT> getRiwayatMPTById(Long id) {
-    //     return riwayatMPTRepository.findById(id);
-    // }
     public RiwayatMPT getRiwayatMPTById(Long id) {
-        return riwayatMPTRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Riwayat MPT not found with id: " + id));
+        return riwayatMPTRepository.findById(id).orElse(null);
     }
 
     public RiwayatMPT saveRiwayatMPT(RiwayatMPT riwayatMPT) {
         return riwayatMPTRepository.save(riwayatMPT);
     }
 
+    public RiwayatMPT updateRiwayatMPT(Long id, RiwayatMPT updatedRiwayatMPT) {
+        RiwayatMPT riwayatMPT = getRiwayatMPTById(id);
+        if (riwayatMPT != null) {
+            riwayatMPT.setId_kegiatan_per_periode_mpt(updatedRiwayatMPT.getId_kegiatan_per_periode_mpt());
+            riwayatMPT.setId_user(updatedRiwayatMPT.getId_user());
+            riwayatMPT.setStatus_mpt(updatedRiwayatMPT.getStatus_mpt());
+            riwayatMPT.setFile_sertifikat_mpt(updatedRiwayatMPT.getFile_sertifikat_mpt());
+            riwayatMPT.setHash(updatedRiwayatMPT.getHash());
+            riwayatMPT.setKeterangan_mhs(updatedRiwayatMPT.getKeterangan_mhs());
+            riwayatMPT.setKeterangan_sa(updatedRiwayatMPT.getKeterangan_sa());
+            riwayatMPT.setCreated_at(updatedRiwayatMPT.getCreated_at());
+            riwayatMPT.setCreated_by(updatedRiwayatMPT.getCreated_by());
+            riwayatMPT.setUpdated_at(updatedRiwayatMPT.getUpdated_at());
+            riwayatMPT.setUpdated_by(updatedRiwayatMPT.getUpdated_by());
+
+            return riwayatMPTRepository.save(riwayatMPT);
+        }
+        return null;
+    }
+
     public void deleteRiwayatMPT(Long id) {
         riwayatMPTRepository.deleteById(id);
     }
-    //  public RiwayatMPT updateRiwayatMPT(Long id, RiwayatMPT updatedRiwayatMPT) {
-    //     Optional<RiwayatMPT> riwayatMPTOptional = riwayatMPTRepository.findById(id);
-    //     if (riwayatMPTOptional.isPresent()) {
-    //         RiwayatMPT riwayatMPT = riwayatMPTOptional.get();
-    //         //riwayatMPT.setId_kegiatan_mpt(updatedRiwayatMPT.getId_kegiatan_mpt());
-    //         riwayatMPT.setId_user(updatedRiwayatMPT.getId_user());
-    //         riwayatMPT.setStatus_mpt(updatedRiwayatMPT.getStatus_mpt());
-    //         riwayatMPT.setFile_seritikat_mpt(updatedRiwayatMPT.getFile_seritikat_mpt());
-    //         riwayatMPT.setHash(updatedRiwayatMPT.getHash());
-    //         riwayatMPT.setKeterangan_mhs(updatedRiwayatMPT.getKeterangan_mhs());
-    //         riwayatMPT.setKeterangan_sa(updatedRiwayatMPT.getKeterangan_sa());
-    //         riwayatMPT.setUpdated_at(updatedRiwayatMPT.getUpdated_at());
-    //         return riwayatMPTRepository.save(riwayatMPT);
-    //     } else {
-    //         throw new RuntimeException("Riwayat MPT not found with id: " + id);
-    //     }
-    // }
-
-    
 }

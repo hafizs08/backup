@@ -1,9 +1,17 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "partisipan")
 public class Partisipan {
 
@@ -11,7 +19,7 @@ public class Partisipan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_partisipan;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_usulan")
     private Usulan usulan;
 
@@ -28,8 +36,7 @@ public class Partisipan {
     private String tempat_lahir;
 
     @Column(name = "tgl_lahir")
-    @Temporal(TemporalType.DATE)
-    private Date tgl_lahir;
+    private String tgl_lahir;
 
     @Column(name = "peran_partisipan")
     private String peran_partisipan;
@@ -38,15 +45,13 @@ public class Partisipan {
     private String dasar_pengiriman;
 
     @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private String created_at;
 
     @Column(name = "created_by")
     private String created_by;
 
     @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private String updated_at;
 
     @Column(name = "updated_by")
     private String updated_by;

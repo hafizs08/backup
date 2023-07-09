@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.RiwayatMPT;
 
-@Repository
 
+@Repository
 public interface RiwayatMPTRepository extends JpaRepository<RiwayatMPT, Long> {
-    @EntityGraph(attributePaths = "kegiatanMPT")
-    Optional<RiwayatMPT> findById(Long id);
+    // Anda dapat menambahkan method khusus sesuai kebutuhan query Anda di sini
 }

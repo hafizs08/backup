@@ -1,14 +1,20 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "biaya_kegiatan")
 public class BiayaKegiatan {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_biaya_kegiatan;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,15 +37,13 @@ public class BiayaKegiatan {
     private String keterangan;
 
     @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private String created_at;
 
     @Column(name = "created_by")
     private String created_by;
 
     @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private String updated_at;
 
     @Column(name = "updated_by")
     private String updated_by;

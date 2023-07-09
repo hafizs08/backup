@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class Admin {
     @Id
     @Column(name = "id_admin")
-    private Long id_admin;
+    private String id_admin;
     
     @Column(name = "email")
     private String email;

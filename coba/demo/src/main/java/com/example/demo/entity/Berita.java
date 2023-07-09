@@ -36,11 +36,11 @@ public class Berita {
     @Column(name = "tgl_terbit")
     private String tglTerbit;
 
-    @UpdateTimestamp
+ 
     @Column(name = "updated_at")
     private LocalDateTime updated_at;
 
-    @CreationTimestamp
+
     @Column(name = "created_at")
     private LocalDateTime created_at;
 
