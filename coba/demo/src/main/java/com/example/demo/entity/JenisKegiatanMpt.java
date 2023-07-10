@@ -32,5 +32,9 @@ public class JenisKegiatanMpt {
     @Column(name = "updated_by")
     private String updated_by;
 
+    public JenisKegiatanMpt(Long id_jenis_kegiatan_mpt) {
+        this.id_jenis_kegiatan_mpt =  id_jenis_kegiatan_mpt;
+    }
+
     // Constructors, getters, setters, and other methods
 }

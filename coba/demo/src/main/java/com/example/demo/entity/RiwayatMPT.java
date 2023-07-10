@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "riwayat_mpt")
-public class RiwayatMPT implements Serializable {
+public class RiwayatMPT implements Serializable{
 
     @Id
     @Column(name = "id_riwayat_mpt")

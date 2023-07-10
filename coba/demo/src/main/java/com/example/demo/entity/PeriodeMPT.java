@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class PeriodeMpt {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_periode_mpt")
     private Long id_periode_mpt;
 
@@ -38,4 +39,10 @@ public class PeriodeMpt {
 
     @Column(name = "updated_by")
     private String updated_by;
+
+    // Constructors, getters, setters, and other methods
+
+    public PeriodeMpt(Long id_periode_mpt) {
+        this.id_periode_mpt = id_periode_mpt;
+    }
 }

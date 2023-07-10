@@ -46,5 +46,8 @@ public class MhsPerPeriodeMpt {
     @Column(name = "updated_by")
     private String updated_by;
 
+    public MhsPerPeriodeMpt(Long id_mhs_per_periode_mpt) {
+        this.id_mhs_per_periode_mpt = id_mhs_per_periode_mpt;
+    }
     // Constructors, getters, setters, and other methods
 }

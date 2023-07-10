@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,8 @@ public class KegiatanPerPeriodeMptController {
     }
 
     @PutMapping("/{id}")
-    public KegiatanPerPeriodeMpt updateKegiatanPerPeriodeMpt(@PathVariable("id") Long id, @RequestBody KegiatanPerPeriodeMpt updatedKegiatanPerPeriodeMpt) {
+    public KegiatanPerPeriodeMpt updateKegiatanPerPeriodeMpt(@PathVariable("id") Long id,
+            @RequestBody KegiatanPerPeriodeMpt updatedKegiatanPerPeriodeMpt) {
         return kegiatanPerPeriodeMptService.updateKegiatanPerPeriodeMpt(id, updatedKegiatanPerPeriodeMpt);
     }
 
@@ -46,11 +48,13 @@ public class KegiatanPerPeriodeMptController {
     public boolean deleteKegiatanPerPeriodeMpt(@PathVariable("id") Long id) {
         return kegiatanPerPeriodeMptService.deleteKegiatanPerPeriodeMpt(id);
     }
+
+    // @GetMapping("/filter-id-periode-id-nama-kegiatan/{idPeriode}/{idNamaKegiatan}")
+    // public List<KegiatanPerPeriodeMpt> getKegiatanPerPeriodeMptByIdPeriodeAndIdNamaKegiatan(
+    //         @PathVariable("idPeriode") Long idPeriode, @PathVariable("idNamaKegiatan") Long idNamaKegiatan) {
+    //     return kegiatanPerPeriodeMptService.filterKegiatanPerPeriodeMptByIdPeriodeAndIdNamaKegiatan(idPeriode,
+    //             idNamaKegiatan);
+    // }
+    
+
 }
-
-
-
-
-
-
-

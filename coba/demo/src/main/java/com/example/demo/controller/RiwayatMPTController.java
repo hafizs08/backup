@@ -18,7 +18,7 @@ import com.example.demo.service.RiwayatMPTService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/riwayatmpt")
+@RequestMapping("/riwayat_mpt")
 public class RiwayatMPTController {
 
     @Autowired
@@ -56,7 +56,7 @@ public class RiwayatMPTController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteRiwayatMPT(@PathVariable Long id) {
         riwayatMPTService.deleteRiwayatMPT(id);

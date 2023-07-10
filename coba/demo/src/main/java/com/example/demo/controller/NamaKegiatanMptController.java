@@ -16,7 +16,7 @@ import com.example.demo.entity.NamaKegiatanMpt;
 import com.example.demo.service.NamaKegiatanMptService;
 
 @RestController
-@RequestMapping("/nama-kegiatan-mpt")
+@RequestMapping("/nama_kegiatan_mpt")
 public class NamaKegiatanMptController {
 
     private final NamaKegiatanMptService namaKegiatanMptService;

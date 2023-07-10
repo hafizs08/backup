@@ -11,11 +11,6 @@ import com.example.demo.repository.KegiatanPerPeriodeMptRepository;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 @Service
 public class KegiatanPerPeriodeMptService {
 
@@ -71,8 +66,17 @@ public class KegiatanPerPeriodeMptService {
         }
     }
 
-   
-    
-
-   
+    // public List<KegiatanPerPeriodeMpt> filterKegiatanPerPeriodeMptByIdPeriodeAndIdNamaKegiatan(Long idPeriode,
+    //         Long idNamaKegiatan) {
+    //     if (idPeriode == 0 && idNamaKegiatan == 0) {
+    //         return kegiatanPerPeriodeMptRepository.findAll();
+    //     } else if (idPeriode == 0) {
+    //         return kegiatanPerPeriodeMptRepository.findByNamaKegiatanMpt(new NamaKegiatanMpt(idNamaKegiatan));
+    //     } else if (idNamaKegiatan == 0) {
+    //         return kegiatanPerPeriodeMptRepository.findByPeriodeMpt(new PeriodeMpt(idPeriode));
+    //     } else {
+    //         return kegiatanPerPeriodeMptRepository.findByPeriodeMptAndNamaKegiatanMpt(
+    //                 new PeriodeMpt(idPeriode), new NamaKegiatanMpt(idNamaKegiatan));
+    //     }
+    // }
 }
