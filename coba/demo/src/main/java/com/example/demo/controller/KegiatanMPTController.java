@@ -17,7 +17,7 @@ import com.example.demo.entity.KegiatanMPT;
 import com.example.demo.service.KegiatanMPTService;
 
 @RestController
-@RequestMapping("/kegiatan-mpt")
+@RequestMapping("/kegiatan_mpt")
 public class KegiatanMPTController {
 
     private final KegiatanMPTService kegiatanMPTService;

@@ -8,4 +8,5 @@ import com.example.demo.entity.KegiatanPerPeriodeMpt;
 
 @Repository
 public interface KegiatanPerPeriodeMptRepository extends JpaRepository<KegiatanPerPeriodeMpt, Long> {
+    
 }

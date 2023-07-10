@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 public class KegiatanMPT {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_kegiatan_mpt")
     private Long idKegiatanMPT;
 

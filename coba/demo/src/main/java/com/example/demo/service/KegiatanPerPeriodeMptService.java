@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.KegiatanPerPeriodeMpt;
+import com.example.demo.entity.NamaKegiatanMpt;
+import com.example.demo.entity.PeriodeMpt;
 import com.example.demo.repository.KegiatanPerPeriodeMptRepository;
 
 import java.util.List;
@@ -36,12 +38,15 @@ public class KegiatanPerPeriodeMptService {
         return kegiatanPerPeriodeMptRepository.save(kegiatanPerPeriodeMpt);
     }
 
-    public KegiatanPerPeriodeMpt updateKegiatanPerPeriodeMpt(Long id, KegiatanPerPeriodeMpt updatedKegiatanPerPeriodeMpt) {
+    public KegiatanPerPeriodeMpt updateKegiatanPerPeriodeMpt(Long id,
+            KegiatanPerPeriodeMpt updatedKegiatanPerPeriodeMpt) {
         Optional<KegiatanPerPeriodeMpt> kegiatanPerPeriodeMptOptional = kegiatanPerPeriodeMptRepository.findById(id);
         if (kegiatanPerPeriodeMptOptional.isPresent()) {
             KegiatanPerPeriodeMpt kegiatanPerPeriodeMpt = kegiatanPerPeriodeMptOptional.get();
-            kegiatanPerPeriodeMpt.setTanggal_mulai_kegiatan_per_periode_mpt(updatedKegiatanPerPeriodeMpt.getTanggal_mulai_kegiatan_per_periode_mpt());
-            kegiatanPerPeriodeMpt.setTanggal_selesai_kegiatan_per_periode_mpt(updatedKegiatanPerPeriodeMpt.getTanggal_selesai_kegiatan_per_periode_mpt());
+            kegiatanPerPeriodeMpt.setTanggal_mulai_kegiatan_per_periode_mpt(
+                    updatedKegiatanPerPeriodeMpt.getTanggal_mulai_kegiatan_per_periode_mpt());
+            kegiatanPerPeriodeMpt.setTanggal_selesai_kegiatan_per_periode_mpt(
+                    updatedKegiatanPerPeriodeMpt.getTanggal_selesai_kegiatan_per_periode_mpt());
             kegiatanPerPeriodeMpt.setPoint_mpt_diperoleh(updatedKegiatanPerPeriodeMpt.getPoint_mpt_diperoleh());
             // Set other updated fields
             kegiatanPerPeriodeMpt.setCreated_at(updatedKegiatanPerPeriodeMpt.getCreated_at());
@@ -49,13 +54,12 @@ public class KegiatanPerPeriodeMptService {
             kegiatanPerPeriodeMpt.setUpdated_at(updatedKegiatanPerPeriodeMpt.getUpdated_at());
             kegiatanPerPeriodeMpt.setUpdated_by(updatedKegiatanPerPeriodeMpt.getUpdated_by());
             // Set additional fields
-    
+
             return kegiatanPerPeriodeMptRepository.save(kegiatanPerPeriodeMpt);
         } else {
             throw new IllegalArgumentException("Kegiatan Per Periode MPT with ID " + id + " does not exist");
         }
     }
-    
 
     public boolean deleteKegiatanPerPeriodeMpt(Long id) {
         KegiatanPerPeriodeMpt kegiatanPerPeriodeMpt = kegiatanPerPeriodeMptRepository.findById(id).orElse(null);
@@ -66,4 +70,9 @@ public class KegiatanPerPeriodeMptService {
             return false;
         }
     }
+
+   
+    
+
+   
 }
