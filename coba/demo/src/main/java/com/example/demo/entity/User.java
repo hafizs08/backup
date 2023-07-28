@@ -27,10 +27,19 @@ public class User implements Serializable {
     @Column(name = "id_user")
     private String id_user;
 
+    // @ElementCollection
+    // @CollectionTable(name = "user_ormawa", joinColumns = @JoinColumn(name = "id_user"))
+    // @Column(name = "id_ormawa")
+    // private List<Long> id_ormawa;
+
+    // @ElementCollection
+    // @CollectionTable(name = "user_ormawa", joinColumns = @JoinColumn(name = "id_user"))
+    // private List<Ormawa> id_ormawa;
+
     @ElementCollection
     @CollectionTable(name = "user_ormawa", joinColumns = @JoinColumn(name = "id_user"))
-    @Column(name = "id_ormawa")
-    private List<Long> id_ormawa;
+    private List<Ormawa> ormawa;
+
 
     @Column(name = "email")
     private String email;
@@ -64,6 +73,9 @@ public class User implements Serializable {
 
     @Column(name = "prodi")
     private String prodi;
+
+    @Column(name = "role")
+    private String role;
 
     @Column(name = "created_at")
     private String created_at;

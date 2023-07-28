@@ -7,4 +7,7 @@ import com.example.demo.entity.PeriodeMpt;
 
 @Repository
 public interface PeriodeMptRepository extends JpaRepository<PeriodeMpt, Long> {
+
 }
+
+

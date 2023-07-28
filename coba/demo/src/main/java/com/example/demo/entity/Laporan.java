@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 
 @Entity
 @Data
@@ -30,16 +32,20 @@ public class Laporan {
     private Long id_laporan;
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User id_user;
+    @JoinColumn(name = "id_revisi_laporan")
+    private RevisiLaporan revisi_laporan;
+
+    // @ManyToOne
+    // @JoinColumn(name = "id_user")
+    // private User user;
+
+    // @ManyToOne
+    // @JoinColumn(name = "id_ormawa")
+    // private Ormawa ormawa;
 
     @ManyToOne
-    @JoinColumn(name = "id_ormawa")
-    private Ormawa id_ormawa;
-
-    @ManyToOne
-    @JoinColumn(name = "id_usulan")
-    private Usulan id_usulan;
+    @JoinColumn(name = "usulan")
+    private Usulan usulan;
 
     private String pencapaian;
 
@@ -73,8 +79,13 @@ public class Laporan {
     private String foto_postingan_kegiatan;
 
     
+    // @Column(name = "foto_dokumentasi_kegiatan")
+    // private String foto_dokumentasi_kegiatan;
+
+    @ElementCollection
+    @CollectionTable(name = "user_dokumentasi_kegiatan", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "foto_dokumentasi_kegiatan")
-    private String foto_dokumentasi_kegiatan;
+    private List<String> foto_dokumentasi_kegiatan;
 
     @Column(name = "foto_tabulasi_hasil")
     private String foto_tabulasi_hasil;
@@ -86,7 +97,7 @@ public class Laporan {
     private String file_laporan_kegiatan;
 
     @Column(name = "validasi_pembina")
-    private Boolean validasi_pembina;
+    private String validasi_pembina;
 
     @Column(name = "status_laporan")
     private String status_laporan;

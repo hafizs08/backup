@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
+
+import javax.persistence.NonUniqueResultException;
+
 import java.util.List;
 
 @Service
@@ -28,6 +31,8 @@ public class UserService {
 
     public User updateUser(String id, User updatedUser) {
         User user = getUserById(id);
+        //user.setId_user(updatedUser.getId_user());
+        user.setOrmawa(updatedUser.getOrmawa());
         user.setEmail(updatedUser.getEmail());
         user.setNama_lengkap(updatedUser.getNama_lengkap());
         user.setNim(updatedUser.getNim());
@@ -39,6 +44,8 @@ public class UserService {
         user.setPeriode_mpt(updatedUser.getPeriode_mpt());
         user.setStatus_mpt(updatedUser.getStatus_mpt());
         user.setProdi(updatedUser.getProdi());
+        user.setRole(updatedUser.getRole());
+        user.setCreated_at(updatedUser.getCreated_at());
         user.setUpdated_at(updatedUser.getUpdated_at());
         user.setUpdated_by(updatedUser.getUpdated_by());
 
@@ -46,16 +53,23 @@ public class UserService {
     }
 
     // public void deleteUser(Long id) {
-    //     userRepository.deleteById(id);
+    // userRepository.deleteById(id);
     // }
     public boolean deleteUser(String id) {
-    if (userRepository.existsById(id)) {
-        userRepository.deleteById(id);
-        return true;
-    } else {
-        return false;
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 
-    
+    public User getUserByNim(String nim) {
+        try {
+            return userRepository.findByNim(nim).stream().findFirst().orElse(null);
+        } catch (NonUniqueResultException ex) {
+            return null;
+        }
+    }
+
 }

@@ -16,12 +16,15 @@ import java.util.Date;
 public class Partisipan {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_partisipan;
 
+
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     // @ManyToOne
     // @JoinColumn(name = "id_usulan")
     // private Usulan usulan;
+
+
 
     @Column(name = "no_induk")
     private String no_induk;
